@@ -1274,7 +1274,7 @@ export default function VillaEstrella() {
             </p>
             <div className="space-y-4">
               {[
-                ['Availability','info@villaestrella-costarica.com'],
+                ['Availability','reservations@villaestrella-costarica.com'],
                 ['Whatsapp','+506 8888 0000'],
                 ['Location','Playa Ocotal, Guanacaste, Costa Rica'],
               ].map(([label,value]) => (
@@ -1375,7 +1375,7 @@ export default function VillaEstrella() {
             <div>
               <p className="text-[#C9A96E] text-xs tracking-[0.3em] uppercase mb-6 font-['Inter']">Contact</p>
               <ul className="space-y-3 text-[#FAF8F5]/50 text-sm font-['Inter']">
-                <li>info@villaestrella-costarica.com</li>
+                <li>reservations@villaestrella-costarica.com</li>
                 <li>+506 8888 0000</li>
                 <li className="pt-4">
                   <a href="https://www.instagram.com/villaestrellacostarica/" target="_blank" rel="noopener noreferrer" className="text-[#C9A96E] hover:text-[#FAF8F5] transition-colors tracking-[0.1em] text-xs uppercase">
