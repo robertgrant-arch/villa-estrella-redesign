@@ -499,11 +499,18 @@ export default function VillaEstrella() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="flex-shrink-0 w-64 h-[520px] overflow-hidden border border-[#0A1628]/10"
+                            className="flex-shrink-0 border border-[#0A1628]/10"
+              style={{ width: 320, height: 568, overflow: 'hidden', position: 'relative' }}
             >
               <iframe
                 src={reel}
-                className="w-full h-full"
+                              style={{
+                                                width: '100%',
+                height: 'calc(100% + 56px)',
+                marginTop: -56,
+                border: 'none',
+                display: 'block',
+              }}
                 scrolling="no"
                 allowTransparency
                 allow="encrypted-media"
