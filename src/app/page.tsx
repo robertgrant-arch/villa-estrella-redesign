@@ -52,14 +52,14 @@ const IMAGES = {
 };
 
 const BEDROOMS = [
-  { name: 'The Ocean Suite',  size: '95 m²',  view: 'Pacific Ocean',     features: ['King bed', 'Private terrace', 'Soaking tub', 'Ocean view'],        img: IMAGES.bed1 },
-  { name: 'The Jungle Loft',  size: '80 m²',  view: 'Rainforest Canopy', features: ['King bed', 'Outdoor shower', 'Hammock balcony', 'Forest view'],     img: IMAGES.bed2 },
+  { name: 'The Ocean Suite',  size: '95 m²',  view: 'Pacific Ocean',     features: ['King bed', 'Private terrace', 'Private bathroom', 'Ocean view'],        img: IMAGES.bed1 },
+  { name: 'The Jungle Loft',  size: '80 m²',  view: 'Rainforest Canopy', features: ['King bed', 'Outdoor shower', 'Forest view'],     img: IMAGES.bed8 },
   { name: 'The Sunset Room',  size: '75 m²',  view: 'Guanacaste Sunset', features: ['King bed', 'Private plunge pool', 'Rain shower', 'Sunset terrace'], img: IMAGES.bed3 },
-  { name: 'The Palapa Suite', size: '85 m²',  view: 'Pool & Garden',     features: ['King bed', 'Open-air bathroom', 'Daybed lounge', 'Garden access'],  img: IMAGES.bed4 },
+  { name: 'The Palapa Suite', size: '85 m²',  view: 'Pool & Garden',     features: ['King bed', 'Private bathroom', 'Daybed lounge', 'Garden access'],  img: IMAGES.bed4 },
   { name: 'The Treetop Room', size: '70 m²',  view: 'Treetop Canopy',    features: ['Queen bed', 'Reading nook', 'Outdoor shower', 'Canopy views'],      img: IMAGES.bed5 },
   { name: 'The Casa Blanca',  size: '90 m²',  view: 'Courtyard & Sea',   features: ['King bed', 'Sitting room', 'Marble bath', 'Sea glimpses'],          img: IMAGES.bed6 },
   { name: 'The Garden Suite', size: '78 m²',  view: 'Tropical Garden',   features: ['Twin kings', 'Private patio', 'Freestanding tub', 'Tropical garden'], img: IMAGES.bed7 },
-  { name: 'The Penthouse',    size: '110 m²', view: '360° Panoramic',    features: ['Super king bed', 'Rooftop terrace', 'Jacuzzi', 'Panoramic views'],  img: IMAGES.bed8 },
+  { name: 'The Penthouse',    size: '110 m²', view: '360° Panoramic',    features: ['Super king bed', 'Rooftop terrace', 'Jacuzzi', 'Panoramic views'],  img: IMAGES.bed2 },
 ];
 
 const EXPERIENCES = [
