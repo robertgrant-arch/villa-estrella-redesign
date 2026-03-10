@@ -3,50 +3,96 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 
+const BASE = 'https://villaestrella-costarica.com/wp-content/uploads/2021/06/';
+const BASE18 = 'https://villaestrella-costarica.com/wp-content/uploads/2018/06/';
+
 const IMAGES = {
-  aerial: 'https://villaestrella-costarica.com/wp-content/uploads/2021/01/DJI_0587.jpg',
-  villa702: 'https://villaestrella-costarica.com/wp-content/uploads/2021/05/villa-702.jpg',
-  villa592: 'https://villaestrella-costarica.com/wp-content/uploads/2021/05/villa-592.jpg',
-  img8471: 'https://villaestrella-costarica.com/wp-content/uploads/2023/04/IMG_8471.jpg',
-  villa56: 'https://villaestrella-costarica.com/wp-content/uploads/2021/05/villa-56.jpg',
-  villa694: 'https://villaestrella-costarica.com/wp-content/uploads/2021/05/villa-694.jpg',
-  img8481: 'https://villaestrella-costarica.com/wp-content/uploads/2023/04/IMG_8481-scaled.jpg',
-  img8399: 'https://villaestrella-costarica.com/wp-content/uploads/2023/04/IMG_8399-scaled.jpg',
+  // Establishing / aerial / pool
+  aerial:    BASE + 'vILLA-estrella-SV-120.jpg',
+  hillside:  BASE + 'vILLA-estrella-SV-115.jpg',
+  helipad:   BASE + 'vILLA-estrella-SV-113.jpg',
+  pool:      BASE + 'vILLA-estrella-SV-109.jpg',
+  exterior1: BASE + 'vILLA-estrella-SV-108.jpg',
+  exterior2: BASE + 'vILLA-estrella-SV-107.jpg',
+  exterior3: BASE + 'vILLA-estrella-SV-105.jpg',
+  lounge:    BASE + 'vILLA-estrella-SV-103.jpg',
+  dining:    BASE + 'vILLA-estrella-SV-102.jpg',
+  kitchen:   BASE + 'vILLA-estrella-SV-101.jpg',
+  living:    BASE + 'vILLA-estrella-SV-100.jpg',
+  terrace:   BASE + 'vILLA-estrella-SV-98.jpg',
+  view:      BASE + 'vILLA-estrella-SV-96.jpg',
+  sunset:    BASE + 'vILLA-estrella-SV-92.jpg',
+  garden:    BASE + 'vILLA-estrella-SV-88.jpg',
+  path:      BASE + 'vILLA-estrella-SV-87.jpg',
+  trees:     BASE + 'vILLA-estrella-SV-86.jpg',
+  grounds:   BASE + 'vILLA-estrella-SV-85.jpg',
+  arch:      BASE + 'vILLA-estrella-SV-84.jpg',
+  // Bedrooms
+  bed1:      BASE + 'vILLA-estrella-SV.jpg',
+  bed2:      BASE + 'vILLA-estrella-SV-40.jpg',
+  bed3:      BASE + 'vILLA-estrella-SV-43.jpg',
+  bed4:      BASE + 'vILLA-estrella-SV-79.jpg',
+  bed5:      BASE + 'vILLA-estrella-SV-78.jpg',
+  bed6:      BASE + 'vILLA-estrella-SV-76.jpg',
+  bed7:      BASE + 'vILLA-estrella-SV-15.jpg',
+  bed8:      BASE + 'vILLA-estrella-SV-10.jpg',
+  // Other interiors
+  bath1:     BASE + 'vILLA-estrella-SV-73.jpg',
+  bath2:     BASE + 'vILLA-estrella-SV-66.jpg',
+  detail1:   BASE + 'vILLA-estrella-SV-61.jpg',
+  detail2:   BASE + 'vILLA-estrella-SV-56.jpg',
+  detail3:   BASE + 'vILLA-estrella-SV-39.jpg',
+  detail4:   BASE + 'vILLA-estrella-SV-38.jpg',
+  detail5:   BASE + 'vILLA-estrella-SV-36.jpg',
+  detail6:   BASE + 'vILLA-estrella-SV-34.jpg',
+  detail7:   BASE + 'vILLA-estrella-SV-33.jpg',
+  detail8:   BASE + 'vILLA-estrella-SV-27.jpg',
+  detail9:   BASE + 'vILLA-estrella-SV-23.jpg',
+  detail10:  BASE + 'vILLA-estrella-SV-13.jpg',
+  detail11:  BASE + 'vILLA-estrella-SV-5.jpg',
+  // Wellness (2018)
+  jacuzzi:   BASE18 + 'EF5A3306.jpg',
+  wellness:  BASE18 + 'EF5A3290.jpg',
 };
 
 const BEDROOMS = [
-  { name: 'The Ocean Suite', size: '95 m²', view: 'Pacific Ocean', features: ['King bed', 'Private terrace', 'Soaking tub', 'Ocean view'], img: IMAGES.villa702 },
-  { name: 'The Jungle Loft', size: '80 m²', view: 'Rainforest Canopy', features: ['King bed', 'Outdoor shower', 'Hammock balcony', 'Forest view'], img: IMAGES.villa592 },
-  { name: 'The Sunset Room', size: '75 m²', view: 'Guanacaste Sunset', features: ['King bed', 'Private plunge pool', 'Rain shower', 'Sunset terrace'], img: IMAGES.img8471 },
-  { name: 'The Palapa Suite', size: '85 m²', view: 'Pool & Garden', features: ['King bed', 'Open-air bathroom', 'Daybed lounge', 'Garden access'], img: IMAGES.villa56 },
-  { name: 'The Treetop Room', size: '70 m²', view: 'Treetop Canopy', features: ['Queen bed', 'Reading nook', 'Outdoor shower', 'Canopy views'], img: IMAGES.villa694 },
-  { name: 'The Casa Blanca', size: '90 m²', view: 'Courtyard & Sea', features: ['King bed', 'Sitting room', 'Marble bath', 'Sea glimpses'], img: IMAGES.img8481 },
-  { name: 'The Garden Suite', size: '78 m²', view: 'Tropical Garden', features: ['Twin kings', 'Private patio', 'Freestanding tub', 'Garden garden'], img: IMAGES.img8399 },
-  { name: 'The Penthouse', size: '110 m²', view: '360° Panoramic', features: ['Super king bed', 'Rooftop terrace', 'Jacuzzi', 'Panoramic views'], img: IMAGES.aerial },
+  { name: 'The Ocean Suite',   size: '95 m²',  view: 'Pacific Ocean',     features: ['King bed', 'Private terrace', 'Soaking tub', 'Ocean view'],       img: IMAGES.bed1 },
+  { name: 'The Jungle Loft',   size: '80 m²',  view: 'Rainforest Canopy', features: ['King bed', 'Outdoor shower', 'Hammock balcony', 'Forest view'],    img: IMAGES.bed2 },
+  { name: 'The Sunset Room',   size: '75 m²',  view: 'Guanacaste Sunset', features: ['King bed', 'Private plunge pool', 'Rain shower', 'Sunset terrace'], img: IMAGES.bed3 },
+  { name: 'The Palapa Suite',  size: '85 m²',  view: 'Pool & Garden',     features: ['King bed', 'Open-air bathroom', 'Daybed lounge', 'Garden access'],  img: IMAGES.bed4 },
+  { name: 'The Treetop Room',  size: '70 m²',  view: 'Treetop Canopy',    features: ['Queen bed', 'Reading nook', 'Outdoor shower', 'Canopy views'],      img: IMAGES.bed5 },
+  { name: 'The Casa Blanca',   size: '90 m²',  view: 'Courtyard & Sea',   features: ['King bed', 'Sitting room', 'Marble bath', 'Sea glimpses'],          img: IMAGES.bed6 },
+  { name: 'The Garden Suite',  size: '78 m²',  view: 'Tropical Garden',   features: ['Twin kings', 'Private patio', 'Freestanding tub', 'Tropical garden'], img: IMAGES.bed7 },
+  { name: 'The Penthouse',     size: '110 m²', view: '360° Panoramic',    features: ['Super king bed', 'Rooftop terrace', 'Jacuzzi', 'Panoramic views'],  img: IMAGES.bed8 },
 ];
 
 const EXPERIENCES = [
   {
     category: 'Adventure',
     icon: '🌊',
-    items: ['Sunset sailing & snorkeling', 'ATV jungle expeditions', 'Sport fishing charters', 'Zip-line canopy tours', 'Helicopter excursions', 'Surfing lessons at Witch\'s Rock'],
-    img: IMAGES.aerial,
+    items: ['Sunset sailing & snorkeling', 'ATV jungle expeditions', 'Sport fishing charters', 'Zip-line canopy tours', 'Helicopter excursions', "Surfing lessons at Witch's Rock"],
+    img: IMAGES.helipad,
   },
   {
     category: 'Wellness',
     icon: '✦',
     items: ['In-villa spa & massage', 'Sunrise yoga pavilion', 'Meditation in nature', 'Private chef nutrition plans', 'Cold plunge & infrared sauna', 'Sound healing ceremonies'],
-    img: IMAGES.img8471,
+    img: IMAGES.jacuzzi,
   },
   {
     category: 'Dining',
     icon: '🍽',
     items: ['Private chef, all meals included', 'Curated Costa Rican wine cellar', 'Farm-to-table breakfast spreads', 'Beachside candlelit dinners', 'Mixology & cocktail classes', 'Custom tasting menus on request'],
-    img: IMAGES.villa702,
+    img: IMAGES.dining,
   },
 ];
 
-const GALLERY_IMAGES = Object.values(IMAGES);
+const GALLERY_IMAGES = [
+  IMAGES.aerial, IMAGES.pool, IMAGES.hillside, IMAGES.helipad,
+  IMAGES.exterior1, IMAGES.exterior2, IMAGES.lounge, IMAGES.dining,
+  IMAGES.terrace, IMAGES.view, IMAGES.sunset, IMAGES.garden,
+  IMAGES.detail1, IMAGES.detail3, IMAGES.bath1, IMAGES.wellness,
+];
 
 const TESTIMONIALS = [
   { name: 'The Harrison Family', location: 'New York, USA', text: 'Villa Estrella is unlike any place we\'ve ever stayed. The staff anticipated our every need, the food was extraordinary, and waking up to those Pacific views every morning felt like a dream we never wanted to leave.', rating: 5 },
@@ -243,7 +289,7 @@ export default function VillaEstrella() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="relative"
           >
-            <img src={IMAGES.aerial} alt="Villa Estrella aerial" className="w-full h-[600px] object-cover" />
+            <img src={IMAGES.aerial} alt="Villa Estrella aerial pool view" className="w-full h-[600px] object-cover" />
             <div className="absolute -bottom-8 -right-8 bg-[#0A1628] p-8 hidden md:block">
               <p className="font-display text-5xl text-[#C9A96E] font-light">8</p>
               <p className="text-[#FAF8F5]/60 text-xs tracking-[0.2em] uppercase mt-1 font-['Inter']">Luxury Suites</p>
@@ -532,7 +578,7 @@ export default function VillaEstrella() {
               ))}
             </div>
             <div className="mt-10">
-              <img src={IMAGES.img8399} alt="Villa exterior" className="w-full h-48 object-cover" />
+              <img src={IMAGES.terrace} alt="Villa terrace" className="w-full h-48 object-cover" />
             </div>
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
