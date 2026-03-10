@@ -215,12 +215,10 @@ export default function VillaEstrella() {
       {/* ── HERO ── */}
       <section id="hero" ref={heroRef} className="relative h-screen overflow-hidden flex items-center justify-center">
         <motion.div style={{ scale: heroScale }} className="absolute inset-0 w-full h-full">
-          <iframe
-            src="https://www.youtube.com/embed/mY4lqbqvth8?autoplay=1&mute=1&loop=1&playlist=mY4lqbqvth8&controls=0&showinfo=0&disablekb=1&iv_load_policy=3&modestbranding=1"
-            className="absolute w-[300%] h-[300%] -top-[100%] -left-[100%]"
-            allow="autoplay; encrypted-media"
-            allowFullScreen
-            title="Villa Estrella background video"
+          <img
+            src={IMAGES.aerial}
+            alt="Villa Estrella aerial view over the Pacific"
+            className="absolute inset-0 w-full h-full object-cover"
           />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A1628]/60 via-[#0A1628]/30 to-[#0A1628]/80" />
